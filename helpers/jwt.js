@@ -15,3 +15,7 @@ export async function issueJwt(user) {
     }
   );
 }
+
+export function authenticateJwt(token) {
+  return jsonwebtoken.verify(token, process.env.JWT_SECRET);
+}
