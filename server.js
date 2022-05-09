@@ -1,7 +1,10 @@
 import dotenv from "dotenv";
 import express from "express";
+import mongoose from "mongoose";
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
+import movieRoute from "./routes/movies.js";
+import commentRoute from "./routes/comments.js";
 
 dotenv.config();
 
@@ -15,6 +18,18 @@ const __dirname = dirname(__filename);
 app.use(express.json());
 
 // Routes
+app.use("/movies", movieRoute);
+app.use("/comments", commentRoute);
+
+console.log("Loading mflix server... 🎥");
+
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => console.log("Database connected! 😍"))
+  .catch(() => console.log("Database is not connected! ☹️"));
 
 // Do not add code below this line!
 // Serve frontend client/build folder
