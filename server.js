@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 import movieRoute from "./routes/movies.js";
 import commentRoute from "./routes/comments.js";
+import userRoute from "./routes/users.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 // Routes
 app.use("/movies", movieRoute);
 app.use("/comments", commentRoute);
+app.use("/users", userRoute);
 
 console.log("Loading mflix server... 🎥");
 

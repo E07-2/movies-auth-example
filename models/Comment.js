@@ -11,6 +11,6 @@ const CommentSchema = new mongoose.Schema({
   date: { type: Date, default: new Date() },
 });
 
-const Comment = mongoose.model("comment", CommentSchema);
+const Comment = mongoose.model("comments", CommentSchema);
 
 export default Comment;
