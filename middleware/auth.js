@@ -10,7 +10,7 @@ export async function authorizeJwt(req, res, next) {
     }
 
     const [bearer, token] = authHeader.split(" ");
-
+    // if promise resolves, returns the payload of the token
     const authenticatedToken = await authenticateJwt(token);
     const user = await User.findById(authenticatedToken.id);
 

@@ -6,6 +6,8 @@ import path, { dirname } from "path";
 import movieRoute from "./routes/movies.js";
 import commentRoute from "./routes/comments.js";
 import userRoute from "./routes/users.js";
+import adminRoute from "./routes/admin.js";
+import { authorizeJwt, authAdminRole } from "./middleware/auth.js";
 
 dotenv.config();
 
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use("/movies", movieRoute);
 app.use("/comments", commentRoute);
 app.use("/users", userRoute);
+app.use("/admin", authorizeJwt, authAdminRole, adminRoute);
 
 console.log("Loading mflix server... 🎥");
 
